@@ -44,6 +44,8 @@ export const useGarden = (currentMonth) => {
     gardenData.plants.forEach(plant => {
       let inBed = false;
       let occupiedSections = [];
+      let isPlanting = false;
+      let isHarvesting = false;
 
       // Sort tasks by month index to process in order
       const sortedTasks = plantActionsMap[plant.name];
@@ -56,10 +58,19 @@ export const useGarden = (currentMonth) => {
           if (task.name.toLowerCase().includes('transfer')) {
             inBed = true;
             occupiedSections = task.sections || [];
+            if (taskMonthIdx === monthIdx) {
+              isPlanting = true;
+            }
           }
           if (task.name.toLowerCase().includes('remove')) {
-            inBed = false;
-            occupiedSections = [];
+            // Special case: plant is still visible in the removal month (harvesting month)
+            if (taskMonthIdx === monthIdx) {
+              isHarvesting = true;
+              inBed = true; // Keep it visible for the removal/harvest month
+            } else {
+              inBed = false;
+              occupiedSections = [];
+            }
           }
         }
       });
@@ -67,7 +78,11 @@ export const useGarden = (currentMonth) => {
       if (inBed) {
         occupiedSections.forEach(sectionNum => {
           if (sectionNum >= 1 && sectionNum <= 10) {
-            sections[sectionNum - 1] = plant.name;
+            sections[sectionNum - 1] = {
+              name: plant.name,
+              isPlanting,
+              isHarvesting
+            };
           }
         });
       }
