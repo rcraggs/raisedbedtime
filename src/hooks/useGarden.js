@@ -46,6 +46,7 @@ export const useGarden = (currentMonth) => {
       let occupiedSections = [];
       let isPlanting = false;
       let isHarvesting = false;
+      let isRemoving = false;
 
       // Sort tasks by month index to process in order
       const sortedTasks = plantActionsMap[plant.name];
@@ -55,18 +56,23 @@ export const useGarden = (currentMonth) => {
 
         // If task happened in or before current month
         if (taskMonthIdx <= monthIdx) {
-          if (task.name.toLowerCase().includes('transfer')) {
+          if (task.name.toLowerCase().includes('transfer') || task.name.toLowerCase().includes('sow outside')) {
             inBed = true;
             occupiedSections = task.sections || [];
             if (taskMonthIdx === monthIdx) {
               isPlanting = true;
             }
           }
-          if (task.name.toLowerCase().includes('remove')) {
-            // Special case: plant is still visible in the removal month (harvesting month)
+          if (task.name.toLowerCase().includes('harvest')) {
             if (taskMonthIdx === monthIdx) {
               isHarvesting = true;
-              inBed = true; // Keep it visible for the removal/harvest month
+            }
+          }
+          if (task.name.toLowerCase().includes('remove')) {
+            // Special case: plant is still visible in the removal month
+            if (taskMonthIdx === monthIdx) {
+              isRemoving = true;
+              inBed = true; // Keep it visible for the removal month
             } else {
               inBed = false;
               occupiedSections = [];
@@ -81,7 +87,8 @@ export const useGarden = (currentMonth) => {
             sections[sectionNum - 1] = {
               name: plant.name,
               isPlanting,
-              isHarvesting
+              isHarvesting,
+              isRemoving
             };
           }
         });
@@ -91,5 +98,33 @@ export const useGarden = (currentMonth) => {
     return sections;
   }, [monthIdx, plantActionsMap]);
 
-  return { monthlyActions, bedState, months: MONTHS, plants, plantActionsMap };
+  const indoorPlants = useMemo(() => {
+    const sownInside = [];
+    const hardeningOff = [];
+
+    gardenData.plants.forEach(plant => {
+      const sortedTasks = plantActionsMap[plant.name];
+      let prevailingState = null;
+
+      // Find the most recent task that happened up to the current month
+      for (const task of sortedTasks) {
+        if (MONTHS.indexOf(task.month) <= monthIdx) {
+          prevailingState = task.name.toLowerCase();
+        }
+      }
+
+      // If the prevailing state is sown inside or harden off, add to respective list
+      if (prevailingState) {
+        if (prevailingState.includes('sow inside')) {
+          sownInside.push(plant.name);
+        } else if (prevailingState.includes('harden off')) {
+          hardeningOff.push(plant.name);
+        }
+      }
+    });
+
+    return { sownInside, hardeningOff };
+  }, [monthIdx, plantActionsMap]);
+
+  return { monthlyActions, bedState, indoorPlants, months: MONTHS, plants, plantActionsMap };
 };

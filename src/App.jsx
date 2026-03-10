@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGarden } from './hooks/useGarden';
-import { Calendar, Sprout, ClipboardList, Check, ArrowRight } from 'lucide-react';
+import { Calendar, Sprout, ClipboardList, Hand, Shovel, ArrowRight, Home, Wind } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
   const [currentMonth, setCurrentMonth] = useState("March");
   const [selectedPlant, setSelectedPlant] = useState("");
 
-  const { monthlyActions, bedState, months, plants, plantActionsMap } = useGarden(currentMonth);
+  const { monthlyActions, bedState, indoorPlants, months, plants, plantActionsMap } = useGarden(currentMonth);
 
   // Initialize selected plant if empty
   if (!selectedPlant && plants && plants.length > 0) {
@@ -108,13 +108,16 @@ function App() {
                             ? 'planting'
                             : section.isHarvesting
                               ? 'harvesting'
-                              : 'occupied'
+                              : section.isRemoving
+                                ? 'removing'
+                                : 'occupied'
                           : ''
                           }`}
                       >
                         <div className="flex items-center gap-2">
                           {section?.isPlanting && <Sprout size={16} className="text-white animate-bounce" />}
-                          {section?.isHarvesting && <Check size={16} className="text-white" />}
+                          {section?.isHarvesting && <Hand size={16} className="text-white" />}
+                          {section?.isRemoving && <Shovel size={16} className="text-white" />}
                           <span className="text-sm tracking-wide font-bold">
                             {section?.name || `Section ${idx + 1}`}
                           </span>
@@ -122,6 +125,57 @@ function App() {
                         </div>
                       </motion.div>
                     ))}
+                  </div>
+                </div>
+
+                {/* Off-bed Statuses */}
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Sown Inside */}
+                  <div className="bg-amber-50/50 border border-amber-200/50 rounded-3xl p-6 shadow-sm">
+                    <h3 className="font-bold text-amber-900 flex items-center gap-2 mb-4">
+                      <Home size={20} className="text-amber-500" />
+                      Sown Inside
+                    </h3>
+                    {indoorPlants.sownInside.length > 0 ? (
+                      <ul className="space-y-2">
+                        {indoorPlants.sownInside.map(plant => (
+                          <li
+                            key={plant}
+                            onClick={() => navigateToPlant(plant)}
+                            className="bg-white rounded-xl py-2 px-4 shadow-sm text-sm font-semibold text-amber-950 cursor-pointer hover:bg-amber-100 hover:scale-105 transition-all flex items-center justify-between group"
+                          >
+                            {plant}
+                            <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 text-amber-600 transition-opacity" />
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm text-amber-900/40 italic">None</p>
+                    )}
+                  </div>
+
+                  {/* Hardening Off */}
+                  <div className="bg-sky-50/50 border border-sky-200/50 rounded-3xl p-6 shadow-sm">
+                    <h3 className="font-bold text-sky-900 flex items-center gap-2 mb-4">
+                      <Wind size={20} className="text-sky-500" />
+                      Hardening Off
+                    </h3>
+                    {indoorPlants.hardeningOff.length > 0 ? (
+                      <ul className="space-y-2">
+                        {indoorPlants.hardeningOff.map(plant => (
+                          <li
+                            key={plant}
+                            onClick={() => navigateToPlant(plant)}
+                            className="bg-white rounded-xl py-2 px-4 shadow-sm text-sm font-semibold text-sky-950 cursor-pointer hover:bg-sky-100 hover:scale-105 transition-all flex items-center justify-between group"
+                          >
+                            {plant}
+                            <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 text-sky-600 transition-opacity" />
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm text-sky-900/40 italic">None</p>
+                    )}
                   </div>
                 </div>
               </>

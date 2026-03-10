@@ -62,8 +62,12 @@
     @apply bg-sage-800 border-forest-950/40;
   }
 
+  .bed-section.removing {
+    @apply bg-sage-900 border-forest-950/60 shadow-lg;
+  }
+
   .bed-section:not(.occupied):not(.planting):not(.harvesting) {
-    @apply bg-stone-200 border-stone-300 text-stone-400 opacity-60 shadow-none;
+    @apply bg-stone-200 border-stone-300 text-stone-600 opacity-60 shadow-none;
   }
 }
 
