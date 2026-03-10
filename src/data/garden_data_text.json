@@ -1,0 +1,130 @@
+{
+    "plants": [
+        {
+            "id": "tomato-roma",
+            "name": "Roma Tomato",
+            "tasks": [
+                {
+                    "name": "Sow Inside",
+                    "month": "March"
+                },
+                {
+                    "name": "Harden Off",
+                    "month": "May"
+                },
+                {
+                    "name": "Transfer",
+                    "month": "June",
+                    "sections": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "August"
+                },
+                {
+                    "name": "Remove",
+                    "month": "October"
+                }
+            ]
+        },
+        {
+            "id": "lettuce-butterhead",
+            "name": "Butterhead Lettuce",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "April",
+                    "sections": [
+                        3,
+                        4
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "May"
+                },
+                {
+                    "name": "Remove",
+                    "month": "June"
+                }
+            ]
+        },
+        {
+            "id": "carrot-nantes",
+            "name": "Nantes Carrot",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "April",
+                    "sections": [
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "July"
+                },
+                {
+                    "name": "Remove",
+                    "month": "August"
+                }
+            ]
+        },
+        {
+            "id": "pepper-bell",
+            "name": "Bell Pepper",
+            "tasks": [
+                {
+                    "name": "Sow Inside",
+                    "month": "February"
+                },
+                {
+                    "name": "Harden Off",
+                    "month": "May"
+                },
+                {
+                    "name": "Transfer",
+                    "month": "June",
+                    "sections": [
+                        7
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "September"
+                },
+                {
+                    "name": "Remove",
+                    "month": "October"
+                }
+            ]
+        },
+        {
+            "id": "kale-curly",
+            "name": "Curly Kale",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "March",
+                    "sections": [
+                        8,
+                        9,
+                        10
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "June"
+                },
+                {
+                    "name": "Remove",
+                    "month": "December"
+                }
+            ]
+        }
+    ]
+}
