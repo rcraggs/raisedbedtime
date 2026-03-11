@@ -1,0 +1,52 @@
+{
+    "actions": [
+        {
+            "name": "Sow Inside",
+            "shortName": "Sow In",
+            "colour": "#f59e0b",
+            "addsToBed": false,
+            "removesFromBed": false,
+            "icon": "mdi:seed-outline"
+        },
+        {
+            "name": "Sow Outside",
+            "shortName": "Sow Out",
+            "colour": "#84cc16",
+            "addsToBed": true,
+            "removesFromBed": false,
+            "icon": "mdi:shovel"
+        },
+        {
+            "name": "Transfer",
+            "shortName": "Transfer",
+            "colour": "#22c55e",
+            "addsToBed": true,
+            "removesFromBed": false,
+            "icon": "mdi:transfer"
+        },
+        {
+            "name": "Harvest",
+            "shortName": "Harvest",
+            "colour": "#a16207",
+            "addsToBed": false,
+            "removesFromBed": false,
+            "icon": "mdi:basket-outline"
+        },
+        {
+            "name": "Remove",
+            "shortName": "Remove",
+            "colour": "#78350f",
+            "addsToBed": false,
+            "removesFromBed": true,
+            "icon": "mdi:trash-can-outline"
+        },
+        {
+            "name": "Harden Off",
+            "shortName": "Harden",
+            "colour": "#38bdf8",
+            "addsToBed": false,
+            "removesFromBed": false,
+            "icon": "mdi:weather-windy"
+        }
+    ]
+}

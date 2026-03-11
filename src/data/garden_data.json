@@ -1,6 +1,6 @@
 {
     "plants": [
-         {
+        {
             "id": "lettuce",
             "name": "Lettuce",
             "tasks": [
@@ -29,7 +29,8 @@
                     "name": "Sow Outside",
                     "month": "March",
                     "sections": [
-                        4,5
+                        4,
+                        5
                     ]
                 },
                 {
@@ -54,10 +55,11 @@
                     "name": "Transfer",
                     "month": "April",
                     "sections": [
-                        3,4
+                        3,
+                        4
                     ]
                 },
-                                {
+                {
                     "name": "Harvest",
                     "month": "June"
                 },
@@ -80,13 +82,18 @@
                     "month": "March"
                 },
                 {
+                    "name": "Harden Off",
+                    "month": "April"
+                },
+                {
                     "name": "Transfer",
                     "month": "July",
                     "sections": [
-                        9,10
+                        9,
+                        10
                     ]
                 },
-                                {
+                {
                     "name": "Harvest",
                     "month": "October"
                 },
@@ -101,14 +108,15 @@
             "name": "Beetroot",
             "tasks": [
                 {
-                    "name": "Sow Indoors",
+                    "name": "Sow Indside",
                     "month": "June"
                 },
-                                {
+                {
                     "name": "Transfer",
                     "month": "July",
                     "sections": [
-                        3,4
+                        3,
+                        4
                     ]
                 },
                 {
@@ -126,14 +134,15 @@
             "name": "Kohl Rabi",
             "tasks": [
                 {
-                    "name": "Sow Indoors",
+                    "name": "Sow Inside",
                     "month": "July"
                 },
-                                {
+                {
                     "name": "Transfer",
                     "month": "August",
                     "sections": [
-                        5,6
+                        5,
+                        6
                     ]
                 },
                 {
@@ -154,7 +163,8 @@
                     "name": "Sow Outside",
                     "month": "April",
                     "sections": [
-                        7,8
+                        7,
+                        8
                     ]
                 },
                 {
@@ -164,8 +174,7 @@
                 {
                     "name": "Harvest",
                     "month": "July"
-                }
-                ,
+                },
                 {
                     "name": "Harvest",
                     "month": "August"
@@ -180,10 +189,11 @@
                     "name": "Sow Outside",
                     "month": "May",
                     "sections": [
-                        5,6
+                        5,
+                        6
                     ]
                 },
-                                {
+                {
                     "name": "Harvest",
                     "month": "July"
                 },
@@ -201,7 +211,8 @@
                     "name": "Sow Outside",
                     "month": "September",
                     "sections": [
-                        1,2
+                        1,
+                        2
                     ]
                 },
                 {
@@ -219,14 +230,15 @@
             "name": "French Beans",
             "tasks": [
                 {
-                    "name": "Sow Indoors",
+                    "name": "Sow Inside",
                     "month": "April"
                 },
                 {
                     "month": "May",
                     "name": "Transfer",
                     "sections": [
-                        1,2
+                        1,
+                        2
                     ]
                 },
                 {
