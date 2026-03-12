@@ -75,7 +75,7 @@ export const useGarden = (currentMonth) => {
           if (meta?.removesFromBed) {
             if (taskMonthIdx === monthIdx) {
               isRemoving = true;
-              inBed = true; 
+              inBed = true;
             } else {
               inBed = false;
               occupiedSections = [];
