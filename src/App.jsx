@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { useGarden } from './hooks/useGarden';
-import { Calendar, Sprout, ClipboardList, Hand, Shovel, ArrowRight, Home, Wind } from 'lucide-react';
+import { Calendar, Sprout, ClipboardList, Hand, Shovel, ArrowRight, Home, Wind, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
-  const [viewMode, setViewMode] = useState('month'); // 'month' or 'plant'
-  const [currentMonth, setCurrentMonth] = useState("March");
+  const getCurrentMonthName = () => {
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return months[new Date().getMonth()];
+  };
+
+  const [viewMode, setViewMode] = useState('month'); // 'month', 'plant', 'yearly', 'log'
+  const [currentMonth, setCurrentMonth] = useState(getCurrentMonthName());
   const [selectedPlant, setSelectedPlant] = useState("");
 
-  const { monthlyActions, bedState, indoorPlants, yearlyBedState, yearlyPlantState, months, plants, plantActionsMap } = useGarden(currentMonth);
+  const { monthlyActions, bedState, indoorPlants, yearlyBedState, yearlyPlantState, months, plants, plantActionsMap, logTasks } = useGarden(currentMonth);
 
   // Initialize selected plant if empty
   if (!selectedPlant && plants && plants.length > 0) {
@@ -62,12 +70,21 @@ function App() {
           >
             Yearly Overview
           </button>
+          <button
+            onClick={() => setViewMode('log')}
+            className={`px-10 py-3.5 rounded-[1.75rem] font-bold transition-all duration-500 text-sm ${viewMode === 'log'
+              ? 'bg-forest-950 text-white shadow-xl shadow-forest-950/20 active:scale-95'
+              : 'text-forest-950/60 hover:text-forest-950 hover:bg-white/50'
+              }`}
+          >
+            Activity Log
+          </button>
         </div>
       </div>
 
       {/* Selectors */}
       {/* Selectors */}
-      {viewMode !== 'yearly' && (
+      {(viewMode === 'month' || viewMode === 'plant') && (
         <div className="glass-card mb-16 sticky top-6 z-20 bg-white/60">
           <div className="month-selector">
             {viewMode === 'month' ? (
@@ -95,7 +112,58 @@ function App() {
         </div>
       )}
 
-      {viewMode === 'yearly' ? (
+      {viewMode === 'log' ? (
+        <div className="w-full max-w-4xl mx-auto">
+          <div className="bg-white/40 backdrop-blur-md rounded-[3rem] p-8 border border-white/60 shadow-lg mt-8">
+            <h3 className="text-3xl font-bold text-forest-950 mb-8 flex items-center gap-3">
+              <ClipboardList size={28} className="text-sage-600" />
+              Activity Log
+            </h3>
+            <div className="grid gap-4">
+              {logTasks.length > 0 ? (
+                logTasks.map((task, idx) => (
+                  <div key={idx} className="group p-6 rounded-3xl bg-white/40 border border-white/60 shadow-sm transition-all border-l-[6px] border-l-green-500 flex flex-col hover:-translate-y-1">
+                    <div className="flex justify-between items-center w-full">
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-3">
+                          <span className="font-bold text-xl text-forest-950 w-32">{task.plantName}</span>
+                          <span className="text-forest-950/40 font-semibold text-sm">Target: {task.month}</span>
+                        </div>
+                        {task.sections && (
+                          <div className="text-forest-950/40 text-[10px] font-bold uppercase tracking-wider">
+                            Grid Areas: {task.sections.join(', ')}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="flex flex-col items-end gap-1">
+                          <span className="text-[10px] bg-forest-950/5 text-forest-950/40 border-forest-950/10 px-3 py-1 rounded-full font-black uppercase tracking-[0.1em] border">
+                            {task.taskName}
+                          </span>
+                          {task.doneDate && (
+                            <span className="text-[10px] font-bold text-forest-950/40 uppercase tracking-widest">
+                              Done: {task.doneDate}
+                            </span>
+                          )}
+                        </div>
+                        <CheckCircle size={24} className="text-green-500 drop-shadow-sm" />
+                      </div>
+                    </div>
+                    {task.notes && (
+                      <div className="mt-4 flex gap-2 text-forest-950/70 text-sm italic">
+                        <ClipboardList size={16} className="text-sage-500 shrink-0 mt-0.5" />
+                        <span className="leading-relaxed">{task.notes}</span>
+                      </div>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-10 text-forest-950/40 italic font-bold">No completed tasks found.</div>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : viewMode === 'yearly' ? (
         <div className="w-full">
           <div className="bg-white/40 backdrop-blur-md rounded-[3rem] p-8 border border-white/60 shadow-lg overflow-x-auto w-full">
             <h3 className="text-3xl font-bold text-forest-950 mb-8 flex items-center gap-3">
@@ -381,10 +449,16 @@ function App() {
                         monthlyActions.map((action, idx) => (
                           <div key={idx} className="group p-6 rounded-3xl bg-white/40 border border-white/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                             <div className="flex justify-between items-start mb-3">
-                              <span className="font-bold text-xl text-forest-950">{action.plantName}:</span>
-                              <span className="text-[10px] bg-terracotta-500/10 text-terracotta-500 px-3 py-1.5 rounded-full font-black uppercase tracking-[0.1em] border border-terracotta-500/20">
-                                {action.taskName}
-                              </span>
+                              <span className={`font-bold text-xl ${action.isDone ? 'text-forest-950/40 line-through' : 'text-forest-950'}`}>{action.plantName}:</span>
+                              <div className="flex items-center gap-2">
+                                {action.isDone && action.doneDate && (
+                                  <span className="text-[10px] font-bold text-forest-950/40 uppercase tracking-widest">{action.doneDate}</span>
+                                )}
+                                {action.isDone && <CheckCircle size={18} className="text-green-500" />}
+                                <span className={`text-[10px] ${action.isDone ? 'bg-forest-950/5 text-forest-950/40 border-forest-950/10 line-through' : 'bg-terracotta-500/10 text-terracotta-500 border-terracotta-500/20'} px-3 py-1.5 rounded-full font-black uppercase tracking-[0.1em] border`}>
+                                  {action.taskName}
+                                </span>
+                              </div>
                             </div>
                             {action.sections && (
                               <div className="flex items-center gap-2 text-forest-950/40 text-xs font-bold uppercase tracking-wider">
@@ -416,12 +490,15 @@ function App() {
                         >
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex items-center gap-2">
-                              <span className="font-bold text-xl text-forest-950">{task.month}:</span>
+                              <span className={`font-bold text-xl ${task.isDone ? 'text-forest-950/40 line-through' : 'text-forest-950'}`}>{task.month}:</span>
                               <ArrowRight size={16} className="text-terracotta-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
-                            <span className="text-[10px] bg-forest-950/10 text-forest-950 px-3 py-1.5 rounded-full font-black uppercase tracking-[0.1em] border border-forest-950/20">
-                              {task.name}
-                            </span>
+                            <div className="flex items-center gap-2">
+                              {task.isDone && <CheckCircle size={18} className="text-green-500" />}
+                              <span className={`text-[10px] ${task.isDone ? 'bg-forest-950/5 text-forest-950/40 border-forest-950/10 line-through' : 'bg-forest-950/10 text-forest-950 border-forest-950/20'} px-3 py-1.5 rounded-full font-black uppercase tracking-[0.1em] border`}>
+                                {task.name}
+                              </span>
+                            </div>
                           </div>
                           {task.sections && (
                             <div className="flex items-center gap-2 text-forest-950/40 text-xs font-bold uppercase tracking-wider">

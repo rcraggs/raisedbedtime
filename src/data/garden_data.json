@@ -49,7 +49,10 @@
             "tasks": [
                 {
                     "name": "Sow Inside",
-                    "month": "March"
+                    "month": "March",
+                    "isDone": true,
+                    "doneDate": "2026-03-15",
+                    "notes": "Didn't germinate for a couple of weeks"
                 },
                 {
                     "name": "Transfer",
@@ -79,7 +82,10 @@
             "tasks": [
                 {
                     "name": "Sow Inside",
-                    "month": "March"
+                    "month": "March",
+                    "doneDate": "2026-04-04",
+                    "isDone": true,
+                    "notes": "First attempt early March didn't germinate"
                 },
                 {
                     "name": "Harden Off",
@@ -161,6 +167,8 @@
             "tasks": [
                 {
                     "name": "Sow Outside",
+                    "isDone": true,
+                    "doneDate": "2026-04-04",
                     "month": "April",
                     "sections": [
                         7,
@@ -231,7 +239,9 @@
             "tasks": [
                 {
                     "name": "Sow Inside",
-                    "month": "April"
+                    "month": "April",
+                    "isDone": true,
+                    "doneDate": "2026-04-04"
                 },
                 {
                     "month": "May",

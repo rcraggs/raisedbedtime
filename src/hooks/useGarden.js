@@ -36,14 +36,31 @@ export const useGarden = (currentMonth) => {
   const monthlyActions = useMemo(() => {
     const actions = [];
     gardenData.plants.forEach((plant) => {
-      plant.tasks.forEach((task) => {
-        if (task.month === currentMonth) {
-          actions.push({
-            plantName: plant.name,
-            taskName: task.name,
-            sections: task.sections,
-          });
-        }
+      let monthTasks = plant.tasks.filter((task) => task.month === currentMonth);
+      if (monthTasks.length === 0) return;
+
+      const harvestTask = monthTasks.find((t) => t.name.toLowerCase() === 'harvest');
+      const removeTask = monthTasks.find((t) => t.name.toLowerCase() === 'remove');
+
+      if (harvestTask && removeTask) {
+        actions.push({
+          plantName: plant.name,
+          taskName: "Harvest & Remove",
+          sections: harvestTask.sections || removeTask.sections,
+          isDone: !!harvestTask.isDone && !!removeTask.isDone,
+          doneDate: harvestTask.doneDate || removeTask.doneDate,
+        });
+        monthTasks = monthTasks.filter(t => t !== harvestTask && t !== removeTask);
+      }
+
+      monthTasks.forEach((task) => {
+        actions.push({
+          plantName: plant.name,
+          taskName: task.name,
+          sections: task.sections,
+          isDone: !!task.isDone,
+          doneDate: task.doneDate,
+        });
       });
     });
     return actions;
@@ -250,6 +267,32 @@ export const useGarden = (currentMonth) => {
     return { rows: states, monthlyTotals };
   }, [plantActionsMap, actionMetaMap]);
 
+  // 8. Completed tasks Log
+  const logTasks = useMemo(() => {
+    const completed = [];
+    gardenData.plants.forEach(plant => {
+       plant.tasks.forEach(task => {
+          if (task.isDone) {
+             completed.push({
+                plantName: plant.name,
+                taskName: task.name,
+                month: task.month,
+                doneDate: task.doneDate,
+                sections: task.sections,
+                notes: task.notes
+             });
+          }
+       });
+    });
+    completed.sort((a,b) => {
+       if (!a.doneDate && !b.doneDate) return 0;
+       if (!a.doneDate) return 1;
+       if (!b.doneDate) return -1;
+       return new Date(b.doneDate) - new Date(a.doneDate);
+    });
+    return completed;
+  }, []);
+
   return {
     monthlyActions,
     bedState,
@@ -259,5 +302,6 @@ export const useGarden = (currentMonth) => {
     months: MONTHS,
     plants,
     plantActionsMap,
+    logTasks,
   };
 };
