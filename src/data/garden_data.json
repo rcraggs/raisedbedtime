@@ -60,7 +60,10 @@
                     "sections": [
                         3,
                         4
-                    ]
+                    ],
+                    "isDone": true,
+                    "doneDate": "2026-04-22",
+                    "notes": "Became too tall for their paper pots"
                 },
                 {
                     "name": "Harvest",
@@ -258,6 +261,28 @@
                 {
                     "month": "September",
                     "name": "Remove"
+                }
+            ]
+        },
+        {
+            "id": "potatoes",
+            "name": "Potatoes",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "April",
+                    "sections": [
+                        9,
+                        10
+                    ]
+                },
+                {
+                    "name": "Remove",
+                    "month": "August"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "August"
                 }
             ]
         }
