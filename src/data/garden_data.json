@@ -13,11 +13,11 @@
                 },
                 {
                     "name": "Harvest",
-                    "month": "April"
+                    "month": "May"
                 },
                 {
                     "name": "Remove",
-                    "month": "April"
+                    "month": "May"
                 }
             ]
         },
@@ -31,15 +31,21 @@
                     "sections": [
                         4,
                         5
-                    ]
+                    ],
+                    "isDone": true,
+                    "doneDate": "2026-05-09"
                 },
                 {
                     "name": "Harvest",
-                    "month": "April"
+                    "month": "April",
+                    "isDone": true,
+                    "doneDate": "2026-05-09"
                 },
                 {
                     "name": "Remove",
-                    "month": "April"
+                    "month": "April",
+                    "isDone": true,
+                    "doneDate": "2026-05-09"
                 }
             ]
         },
@@ -96,7 +102,7 @@
                 },
                 {
                     "name": "Transfer",
-                    "month": "July",
+                    "month": "May",
                     "sections": [
                         9,
                         10
@@ -165,34 +171,6 @@
             ]
         },
         {
-            "id": "carrots",
-            "name": "Carrots (Nantes)",
-            "tasks": [
-                {
-                    "name": "Sow Outside",
-                    "isDone": true,
-                    "doneDate": "2026-04-04",
-                    "month": "April",
-                    "sections": [
-                        7,
-                        8
-                    ]
-                },
-                {
-                    "name": "Remove",
-                    "month": "August"
-                },
-                {
-                    "name": "Harvest",
-                    "month": "July"
-                },
-                {
-                    "name": "Harvest",
-                    "month": "August"
-                }
-            ]
-        },
-        {
             "id": "chard",
             "name": "Chard",
             "tasks": [
@@ -247,12 +225,16 @@
                     "doneDate": "2026-04-04"
                 },
                 {
-                    "month": "May",
                     "name": "Transfer",
+                    "month": "May",
                     "sections": [
                         1,
-                        2
-                    ]
+                        2,
+                        7,
+                        8
+                    ],
+                    "isDone": true,
+                    "doneDate": "2026-05-08"
                 },
                 {
                     "month": "August",
@@ -261,28 +243,6 @@
                 {
                     "month": "September",
                     "name": "Remove"
-                }
-            ]
-        },
-        {
-            "id": "potatoes",
-            "name": "Potatoes",
-            "tasks": [
-                {
-                    "name": "Sow Outside",
-                    "month": "April",
-                    "sections": [
-                        9,
-                        10
-                    ]
-                },
-                {
-                    "name": "Remove",
-                    "month": "August"
-                },
-                {
-                    "name": "Harvest",
-                    "month": "August"
                 }
             ]
         }
