@@ -1,0 +1,290 @@
+{
+    "plants": [
+        {
+            "id": "lettuce",
+            "name": "Lettuce",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "March",
+                    "sections": [
+                        6
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "April"
+                },
+                {
+                    "name": "Remove",
+                    "month": "April"
+                }
+            ]
+        },
+        {
+            "id": "Radish",
+            "name": "Radish",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "March",
+                    "sections": [
+                        4,
+                        5
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "April"
+                },
+                {
+                    "name": "Remove",
+                    "month": "April"
+                }
+            ]
+        },
+        {
+            "id": "broad_beans",
+            "name": "Broad Beans",
+            "tasks": [
+                {
+                    "name": "Sow Inside",
+                    "month": "March",
+                    "isDone": true,
+                    "doneDate": "2026-03-15",
+                    "notes": "Didn't germinate for a couple of weeks"
+                },
+                {
+                    "name": "Transfer",
+                    "month": "April",
+                    "sections": [
+                        3,
+                        4
+                    ],
+                    "isDone": true,
+                    "doneDate": "2026-04-22",
+                    "notes": "Became too tall for their paper pots"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "June"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "July"
+                },
+                {
+                    "name": "Remove",
+                    "month": "July"
+                }
+            ]
+        },
+        {
+            "id": "kale",
+            "name": "Kale",
+            "tasks": [
+                {
+                    "name": "Sow Inside",
+                    "month": "March",
+                    "doneDate": "2026-04-04",
+                    "isDone": true,
+                    "notes": "First attempt early March didn't germinate"
+                },
+                {
+                    "name": "Harden Off",
+                    "month": "April"
+                },
+                {
+                    "name": "Transfer",
+                    "month": "July",
+                    "sections": [
+                        9,
+                        10
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "October"
+                },
+                {
+                    "name": "Remove",
+                    "month": "November"
+                }
+            ]
+        },
+        {
+            "id": "beetroot",
+            "name": "Beetroot",
+            "tasks": [
+                {
+                    "name": "Sow Indside",
+                    "month": "June"
+                },
+                {
+                    "name": "Transfer",
+                    "month": "July",
+                    "sections": [
+                        3,
+                        4
+                    ]
+                },
+                {
+                    "name": "Remove",
+                    "month": "September"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "September"
+                }
+            ]
+        },
+        {
+            "id": "kohl-rabi",
+            "name": "Kohl Rabi",
+            "tasks": [
+                {
+                    "name": "Sow Inside",
+                    "month": "July"
+                },
+                {
+                    "name": "Transfer",
+                    "month": "August",
+                    "sections": [
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "name": "Remove",
+                    "month": "November"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "November"
+                }
+            ]
+        },
+        {
+            "id": "carrots",
+            "name": "Carrots (Nantes)",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "isDone": true,
+                    "doneDate": "2026-04-04",
+                    "month": "April",
+                    "sections": [
+                        7,
+                        8
+                    ]
+                },
+                {
+                    "name": "Remove",
+                    "month": "August"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "July"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "August"
+                }
+            ]
+        },
+        {
+            "id": "chard",
+            "name": "Chard",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "May",
+                    "sections": [
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "July"
+                },
+                {
+                    "name": "Remove",
+                    "month": "July"
+                }
+            ]
+        },
+        {
+            "id": "spinach",
+            "name": "Spinach",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "September",
+                    "sections": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "name": "Harvest",
+                    "month": "October"
+                },
+                {
+                    "name": "Remove",
+                    "month": "November"
+                }
+            ]
+        },
+        {
+            "id": "dilly-beans",
+            "name": "French Beans",
+            "tasks": [
+                {
+                    "name": "Sow Inside",
+                    "month": "April",
+                    "isDone": true,
+                    "doneDate": "2026-04-04"
+                },
+                {
+                    "month": "May",
+                    "name": "Transfer",
+                    "sections": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "month": "August",
+                    "name": "Harvest"
+                },
+                {
+                    "month": "September",
+                    "name": "Remove"
+                }
+            ]
+        },
+        {
+            "id": "potatoes",
+            "name": "Potatoes",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "April",
+                    "sections": [
+                        9,
+                        10
+                    ]
+                },
+                {
+                    "name": "Remove",
+                    "month": "August"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "August"
+                }
+            ]
+        }
+    ]
+}
