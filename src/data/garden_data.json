@@ -102,11 +102,7 @@
                 },
                 {
                     "name": "Transfer",
-                    "month": "May",
-                    "sections": [
-                        9,
-                        10
-                    ]
+                    "month": "May"
                 },
                 {
                     "name": "Harvest",
@@ -243,6 +239,25 @@
                 {
                     "month": "September",
                     "name": "Remove"
+                }
+            ]
+        },
+        {
+            "name": "New Plant",
+            "tasks": [
+                {
+                    "name": "Sow Outside",
+                    "month": "May",
+                    "sections": [
+                        9,
+                        10
+                    ],
+                    "isDone": true,
+                    "doneDate": "2026-05-10"
+                },
+                {
+                    "name": "Harvest",
+                    "month": "September"
                 }
             ]
         }
